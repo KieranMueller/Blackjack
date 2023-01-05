@@ -1,0 +1,54 @@
+html{
+    margin: 0;
+    overflow: hidden;
+    background-color: rgb(41, 41, 41);
+}
+body{
+    margin:0;
+    color:rgb(245, 222, 179);
+    text-align: center;
+}
+.background-pic{
+    position: fixed;
+    top:0;
+    left:0;
+    object-fit: cover;
+    opacity: .3;
+    z-index: -5;
+    width:100vw;
+    height:100vh;
+}
+.playButton{
+    background: none;
+    opacity: .8;
+    color: rgb(245, 222, 179);
+    font-size: 30px;
+    font-weight: 700;
+    border:none;
+    font-family: 'Times New Roman', Times, serif;
+    transition: .3s;
+}
+.playButton:hover{
+    color: rgb(245, 222, 179);
+    opacity: 1;
+    scale:1.1;
+    cursor: pointer;
+}
+p{
+    font-size: 26px;
+}
+h2{
+    text-align: left;
+}
+.actionButtonOne, .actionButtonTwo{
+    width: 100px;
+    height:30px;
+    font-size: 16px;
+    background-color:bisque;
+    opacity: .8;
+    border:none;
+    transition: .3s;
+}
+.actionButtonOne:hover, .actionButtonTwo:hover{
+    opacity: 1;
+}
