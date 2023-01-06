@@ -12,7 +12,7 @@ let hasBlackjack = false;
 let isAlive = false;
 let message = " ";
 let dealerCards = [];
-let newDealerCard = 4;
+let newDealerCard = randomNumber();
 let betTotal = [];
 let dealerSum = 0;
 let playerName = "Jasper";
@@ -143,8 +143,8 @@ function start(){
     }
     sum = cards[0] + cards[1];
     //dealer setup
-    let dealerFirstCard = 2;
-    let dealerSecondCard = 3;
+    let dealerFirstCard = randomNumber();
+    let dealerSecondCard = randomNumber();
     dealerCards = [dealerFirstCard, dealerSecondCard];
     dealerEl.textContent = "? "+dealerCards[0];
     dealerSum = dealerCards[0] + dealerCards [1];
