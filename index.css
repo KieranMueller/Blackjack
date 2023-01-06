@@ -26,13 +26,17 @@ body{
     font-weight: 700;
     border:none;
     font-family: 'Times New Roman', Times, serif;
-    transition: .3s;
+    transition: .8s;
+    animation: playBlackjack 10s linear infinite;
 }
 .playButton:hover{
-    color: rgb(245, 222, 179);
+    color: rgb(255, 255, 255);
     opacity: 1;
-    scale:1.1;
     cursor: pointer;
+}
+@keyframes playBlackjack{
+    95%{transform: rotate(0);}
+    100%{transform: rotate(360deg);}
 }
 p{
     font-size: 26px;
@@ -40,7 +44,7 @@ p{
 h2{
     text-align: left;
 }
-.actionButtonOne, .actionButtonTwo{
+.button{
     width: 100px;
     height:30px;
     font-size: 16px;
@@ -48,7 +52,18 @@ h2{
     opacity: .8;
     border:none;
     transition: .3s;
+    margin: 10px;
 }
-.actionButtonOne:hover, .actionButtonTwo:hover{
+.button:hover{
     opacity: 1;
+}
+.buttondiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100px;
+}
+.playerObject{
+    text-align: center;
+    font-size: 30px;
 }
