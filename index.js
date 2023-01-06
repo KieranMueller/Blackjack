@@ -12,7 +12,7 @@ let hasBlackjack = false;
 let isAlive = false;
 let message = " ";
 let dealerCards = [];
-let newDealerCard = 5;
+let newDealerCard = 4;
 let betTotal = [];
 let dealerSum = 0;
 let playerName = "Jasper";
@@ -34,10 +34,19 @@ function start(){
 function stand(){
     if(isAlive){
         if(dealerSum > 16){
-            dealerEl.textContent = dealerCards[1] + " " + dealerCards[0];
-            if (dealerSum < sum) displayMessage.textContent = "You Win!";
-            if (dealerSum > sum) displayMessage.textContent = "You Lose";
-            if (dealerSum === sum) displayMessage.textContent = "Push";
+            isAlive = false;
+            dealerEl.textContent = "Flipping Card...";
+            setTimeout(function()
+            {dealerEl.textContent = dealerCards[1] + " " + dealerCards[0]},800);
+            if (dealerSum < sum) setTimeout(function()
+            {displayMessage.textContent = "You Win!"},800);
+            if (dealerSum > sum) setTimeout(function()
+            {displayMessage.textContent = "You Lose"},800);
+            if (dealerSum === sum) setTimeout(function()
+            {displayMessage.textContent = "Push"},800);
+            setTimeout(function(){actionButtonOne.textContent = " "},800);
+            setTimeout(function(){actionButtonTwo.textContent = " "},800);
+            setTimeout(function(){actionButtonThree.textContent = "Reset"},800);
             return};
             if (dealerSum <= 16)
             dealerEl.textContent = "Dealer Drawing..."
@@ -46,18 +55,37 @@ function stand(){
                 dealerSum += newDealerCard
                 dealerCards.push(newDealerCard);
                 console.log(dealerSum);
-            if(dealerSum>21){
-                    displayMessage.textContent = "Dealer Bust - You Win!";
-                    return;
-                }
-                if(dealerSum === 21){
+                if(dealerSum>21){
                     isAlive = false;
-                    setTimeout(function(){displayMessage.textContent = "Dealer Blackjack :("},800);
-                    setTimeout(function(){actionButtonThree.textContent = "Reset"},800);
+                        setTimeout(function()
+                        {displayMessage.textContent = "Dealer Bust - You Win!"},800);
+                        setTimeout(function(){actionButtonThree.textContent = "Reset"},800);
+                        setTimeout(function(){actionButtonOne.textContent = " "},800);
+                        setTimeout(function(){actionButtonTwo.textContent = " "},800);
+                        return;
+                    }
+                    if(dealerSum === 21){
+                        isAlive = false;
+                        setTimeout(function(){displayMessage.textContent = "Dealer Blackjack :("},800);
+                        setTimeout(function(){actionButtonThree.textContent = "Reset"},800);
+                        setTimeout(function(){actionButtonOne.textContent = " "},800);
+                        setTimeout(function(){actionButtonTwo.textContent = " "},800);
+                        return;
+                    }
+                if(dealerSum > 16){
+                    isAlive = false;
+                    setTimeout(function(){dealerEl.textContent = dealerCards[1] + " " + dealerCards[0]
+                + " "+ newDealerCard},800);
+                    if (dealerSum < sum) setTimeout(function()
+                    {displayMessage.textContent = "You Win!"},800);
+                    if (dealerSum > sum) setTimeout(function()
+                    {displayMessage.textContent = "You Lose"},800);
+                    if (dealerSum === sum) setTimeout(function()
+                    {displayMessage.textContent = "Push"},800);
                     setTimeout(function(){actionButtonOne.textContent = " "},800);
                     setTimeout(function(){actionButtonTwo.textContent = " "},800);
-                    return;
-                }
+                    setTimeout(function(){actionButtonThree.textContent = "Reset"},800);
+                    return};
     }
 }
 
@@ -115,8 +143,8 @@ function start(){
     }
     sum = cards[0] + cards[1];
     //dealer setup
-    let dealerFirstCard = 10;
-    let dealerSecondCard = 6;
+    let dealerFirstCard = 2;
+    let dealerSecondCard = 3;
     dealerCards = [dealerFirstCard, dealerSecondCard];
     dealerEl.textContent = "? "+dealerCards[0];
     dealerSum = dealerCards[0] + dealerCards [1];
