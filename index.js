@@ -164,7 +164,7 @@ let hit = function hit(){
     }
 }
 function reset(){
-    if(!isAlive) alert(1);
+    if(!isAlive) document.location.reload()
 }
 
 /* To-Do
