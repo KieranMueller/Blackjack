@@ -6,36 +6,85 @@ function randomNumber(){
 };
 // Variables
 let cards = [];
+let hasBet = false;
 let sum = 0;
 let hasBlackjack = false;
 let isAlive = false;
 let message = " ";
+let dealerCards = [];
+let newDealerCard = randomNumber();
+let betTotal = [];
+let dealerSum = 0;
+let playerName = "Jasper";
+let playerChips = 600;
 let displayMessage = document.getElementById("message");
 let sumMessage = document.getElementById("sum");
 let displayCards = document.querySelector(".cards");
+let dealerEl = document.querySelector(".dealerCards");
+let betEl = document.querySelector(".bet");
 let actionButtonOne = document.querySelector(".actionButtonOne");
 let actionButtonTwo = document.querySelector(".actionButtonTwo");
 let actionButtonThree = document.querySelector(".actionButtonThree");
+let playerEl = document.querySelector(".playerObject");
 function start(){
     renderGame()
 }
-// Player Object
-let player = document.querySelector(".playerObject");
-playerObject = {
-    name: "Kieran",
-    chips: 600
+
+//stand
+function stand(){
+    if(isAlive){
+        if (dealerSum <= 16)
+        dealerCards.push(newDealerCard);
+        console.log(dealerCards);
+    }
 }
 
-
-//Functions
-
-//Action Functions
-
+// Betting!
+    function incrementBetOne(){
+    hasBet = true;
+    if(!isAlive){
+    let betAmount = 1;
+    let betSum = 0;
+    betTotal.push(betAmount);
+    for (let i = 0; i < betTotal.length; i++){
+        betSum += betTotal[i]
+    }
+    betEl.textContent = "Bet: $"+betSum;
+}
+}
+function incrementBetFive(){
+    hasBet = true;
+    if(!isAlive){
+   let betAmount = 5;
+    let betSum = 0;
+    betTotal.push(betAmount);
+    for (let i = 0; i < betTotal.length; i++){
+        betSum += betTotal[i]
+    }
+    betEl.textContent = "Bet: $"+betSum;
+}
+}
+function incrementBetTen(){
+    hasBet = true;
+    if(!isAlive){
+   let betAmount = 10;
+    let betSum = 0;
+    betTotal.push(betAmount);
+    for (let i = 0; i < betTotal.length; i++){
+        betSum += betTotal[i]
+    }
+    betEl.textContent = "Bet: $"+betSum;
+}
+}
 
 //General Parameters
+playerEl.textContent = playerName + ": $" + playerChips;
 function start(){
+    if(!hasBet){ 
+        displayMessage.textContent = "No freebies - Please place bet";
+        return;}
+    document.querySelector(".playButton").onclick = null;
     isAlive = true;
-    player.textContent = playerObject.name + ": $" + playerObject.chips;
     let firstCard = randomNumber();
     let secondCard = randomNumber();
     cards = [firstCard, secondCard];
@@ -43,7 +92,28 @@ function start(){
         displayCards.textContent += " " + cards[i] + " ";
     }
     sum = cards[0] + cards[1];
-    renderGame()
+    //dealer setup
+    let dealerFirstCard = randomNumber();
+    let dealerSecondCard = randomNumber();
+    dealerCards = [dealerFirstCard, dealerSecondCard];
+    dealerEl.textContent = "Dealer: " + " " + "? " + dealerCards[0];
+    dealerSum = dealerCards[0] + dealerCards [1];
+   
+    if (dealerSum === 21 && sum === 21){
+        dealerEl.textContent = dealerCards[1] + " " + dealerCards[0];
+        setTimeout(function(){displayMessage.textContent = "Push!"},500);
+        isAlive = false;
+        setTimeout(function(){actionButtonThree.textContent = "Reset"},500);
+        return;
+    }
+    if(dealerSum === 21 && sum !== 21){
+        (!isAlive);
+        setTimeout(function(){dealerEl.textContent = "Dealer Blackjack :("},500);
+        setTimeout(function(){actionButtonThree.textContent = "Reset"},500);
+        return;
+
+    }
+  renderGame()
 }
 function renderGame(){
     sumMessage.textContent = "Sum: ...";
@@ -82,6 +152,7 @@ function renderGame(){
     };
 }
 
+
 let hit = function hit(){
     if(isAlive){
     let newCard = randomNumber();
@@ -93,8 +164,7 @@ let hit = function hit(){
     }
 }
 function reset(){
-    if(!isAlive)
-    document.location.reload();
+    if(!isAlive) alert(1);
 }
 
 /* To-Do
