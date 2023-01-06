@@ -158,7 +158,7 @@ function start(){
         return;
     }
     if(dealerSum === 21 && sum !== 21){
-        (!isAlive);
+        isAlive = false;
         setTimeout(function(){dealerEl.textContent = "Dealer Blackjack :("},500);
         setTimeout(function(){actionButtonThree.textContent = "Reset"},500);
         return;
