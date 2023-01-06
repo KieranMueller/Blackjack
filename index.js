@@ -12,7 +12,7 @@ let hasBlackjack = false;
 let isAlive = false;
 let message = " ";
 let dealerCards = [];
-let newDealerCard = randomNumber();
+let newDealerCard = 5;
 let betTotal = [];
 let dealerSum = 0;
 let playerName = "Jasper";
@@ -33,9 +33,31 @@ function start(){
 //stand
 function stand(){
     if(isAlive){
-        if (dealerSum <= 16)
-        dealerCards.push(newDealerCard);
-        console.log(dealerCards);
+        if(dealerSum > 16){
+            dealerEl.textContent = dealerCards[1] + " " + dealerCards[0];
+            if (dealerSum < sum) displayMessage.textContent = "You Win!";
+            if (dealerSum > sum) displayMessage.textContent = "You Lose";
+            if (dealerSum === sum) displayMessage.textContent = "Push";
+            return};
+            if (dealerSum <= 16)
+            dealerEl.textContent = "Dealer Drawing..."
+            setTimeout(function(){dealerEl.textContent = dealerCards[1] 
+                + " " + dealerCards[0] + " " + newDealerCard},800);
+                dealerSum += newDealerCard
+                dealerCards.push(newDealerCard);
+                console.log(dealerSum);
+            if(dealerSum>21){
+                    displayMessage.textContent = "Dealer Bust - You Win!";
+                    return;
+                }
+                if(dealerSum === 21){
+                    isAlive = false;
+                    setTimeout(function(){displayMessage.textContent = "Dealer Blackjack :("},800);
+                    setTimeout(function(){actionButtonThree.textContent = "Reset"},800);
+                    setTimeout(function(){actionButtonOne.textContent = " "},800);
+                    setTimeout(function(){actionButtonTwo.textContent = " "},800);
+                    return;
+                }
     }
 }
 
@@ -93,11 +115,12 @@ function start(){
     }
     sum = cards[0] + cards[1];
     //dealer setup
-    let dealerFirstCard = randomNumber();
-    let dealerSecondCard = randomNumber();
+    let dealerFirstCard = 10;
+    let dealerSecondCard = 6;
     dealerCards = [dealerFirstCard, dealerSecondCard];
-    dealerEl.textContent = "Dealer: " + " " + "? " + dealerCards[0];
+    dealerEl.textContent = "? "+dealerCards[0];
     dealerSum = dealerCards[0] + dealerCards [1];
+    console.log(dealerSum);
    
     if (dealerSum === 21 && sum === 21){
         dealerEl.textContent = dealerCards[1] + " " + dealerCards[0];
@@ -164,7 +187,8 @@ let hit = function hit(){
     }
 }
 function reset(){
-    if(!isAlive) document.location.reload()
+    if(!isAlive) document.location.reload();
+    
 }
 
 /* To-Do
