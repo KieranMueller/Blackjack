@@ -10,21 +10,26 @@
   <body>
     <img
       class="background-pic"
-      src="poker-table.jpg"
+      src="pics/poker-table.jpg"
       alt="background picture of a poker table"
     />
     <h1>
       <button class="playButton" onclick="start()">Play Blackjack</button>
     </h1>
+    <h2 class="dealerCards"></h2>
     <p id="message">Ready to win big?</p>
     <h2 class="cards">Cards:</h2>
     <h2 id="sum">Sum:</h2>
     <div class="buttondiv">
       <button class="button actionButtonOne" onclick="hit()"></button>
-      <button class="button actionButtonTwo"></button>
+      <button class="button actionButtonTwo" onclick="stand()"></button>
       <button class="button actionButtonThree" onclick="reset()"></button>
     </div>
     <h2 class="playerObject"></h2>
+    <h2 class="bet">Bet:</h2>
+    <button class="button betOne" onclick="incrementBetOne()">+1</button>
+    <button class="button betFive" onclick="incrementBetFive()">+5</button>
+    <button class="button betTen" onclick="incrementBetTen()">+10</button>
     <script src="index.js"></script>
   </body>
 </html>
