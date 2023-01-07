@@ -20,7 +20,6 @@ body{
 }
 .playButton{
     background: none;
-    opacity: .8;
     color: rgb(245, 222, 179);
     font-size: 30px;
     font-weight: 700;
@@ -31,8 +30,6 @@ body{
 }
 .playButton:hover{
     color: rgb(255, 255, 255);
-    opacity: 1;
-    cursor: pointer;
 }
 @keyframes playBlackjack{
     95%{transform: rotate(0);}
@@ -72,4 +69,7 @@ h2{
 }
 .bet{
     text-align: center;
+}
+.goButton{
+width:350px;
 }
