@@ -6,6 +6,7 @@ function randomNumber(){
 };
 // Variables
 let cards = [];
+let youWin = false;
 let hasBet = false;
 let sum = 0;
 let hasBlackjack = false;
@@ -30,7 +31,6 @@ function start(){
     renderGame()
 }
 
-//stand
 function stand(){
     if(isAlive){
         if(dealerSum > 16){
@@ -38,8 +38,11 @@ function stand(){
             dealerEl.textContent = "Flipping Card...";
             setTimeout(function()
             {dealerEl.textContent = dealerCards[1] + " " + dealerCards[0]},800);
-            if (dealerSum < sum) setTimeout(function()
+            if (dealerSum < sum) {
+                youWin = true;
+            setTimeout(function()
             {displayMessage.textContent = "You Win!"},800);
+            };
             if (dealerSum > sum) setTimeout(function()
             {displayMessage.textContent = "You Lose"},800);
             if (dealerSum === sum) setTimeout(function()
@@ -54,8 +57,7 @@ function stand(){
                 + " " + dealerCards[0] + " " + newDealerCard},800);
                 dealerSum += newDealerCard
                 dealerCards.push(newDealerCard);
-                console.log(dealerSum);
-                if(dealerSum>21){
+            if(dealerSum>21){
                     isAlive = false;
                         setTimeout(function()
                         {displayMessage.textContent = "Dealer Bust - You Win!"},800);
@@ -202,6 +204,8 @@ function renderGame(){
                 }
     };
 }
+
+console.log(dealerSum);
 
 
 let hit = function hit(){
