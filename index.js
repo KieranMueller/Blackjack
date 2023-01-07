@@ -1,7 +1,3 @@
-window.addEventListener("load", function(){this.setTimeout(function(){
-    window.scrollTo(0,1);}, 0);});
-
-
 function randomNumber(){
     let randomNumber = Math.floor((Math.random()*13)+1)
     if (randomNumber === 1) return 11;
@@ -35,14 +31,14 @@ let playerEl = document.querySelector(".playerObject");
 function start(){
     renderGame()
 }
-
 function stand(){
-    isAlive = false;{
+    if (isAlive){
         dealerEl.textContent = "Dealer Drawing..."
         setTimeout(function(){actionButtonThree.textContent = "Reset"},800);
         setTimeout(function(){actionButtonOne.textContent = " "},800);
         setTimeout(function(){actionButtonTwo.textContent = " "},800);
     if(dealerSum>16){
+        isAlive = false;
         setTimeout(function(){dealerEl.textContent = dealerCards[1] + " " + dealerCards[0]},800);
         if(dealerSum>sum) setTimeout(function(){displayMessage.textContent = "You Lose"},800);
         if(dealerSum<sum) setTimeout(function(){displayMessage.textContent = "You Win"},800);
@@ -50,44 +46,52 @@ function stand(){
         return;
     }
     if(dealerSum<=16){
+        isAlive = false;
         let newDealerCard = randomNumber();
         dealerCards.push(newDealerCard)
         dealerSum += newDealerCard;
         setTimeout(function(){dealerEl.textContent = dealerCards},800);
     }
     if(dealerSum<=16){
+        isAlive = false;
         let newDealerCard = randomNumber();
         dealerCards.push(newDealerCard)
         dealerSum += newDealerCard;
         setTimeout(function(){dealerEl.textContent = dealerCards},800);
     }
     if(dealerSum<=16){
+        isAlive = false;
         let newDealerCard = randomNumber();
         dealerCards.push(newDealerCard)
         dealerSum += newDealerCard;
         setTimeout(function(){dealerEl.textContent = dealerCards},800);
     }
     if(dealerSum<=16){
+        isAlive = false;
         let newDealerCard = randomNumber();
         dealerCards.push(newDealerCard)
         dealerSum += newDealerCard;
         setTimeout(function(){dealerEl.textContent = dealerCards},800);
     }
     if(dealerSum > 21){
+        isAlive = false;
         setTimeout(function(){displayMessage.textContent = "Dealer Bust: You Win!"},800);
         return;
     }
     if(dealerSum === 21){
+        isAlive = false;
         setTimeout(function(){displayMessage.textContent = "Dealer Blackjack"},800);
         return;
     }
     if(dealerSum > 16){
+        isAlive = false;
         if(dealerSum>sum) setTimeout(function(){displayMessage.textContent = "You Lose"},800);
         if(dealerSum<sum) setTimeout(function(){displayMessage.textContent = "You Win"},800);
         if(dealerSum === sum) setTimeout(function(){displayMessage.textContent = "Push"},800);
         return;}
     }
 }
+
 
 // Betting!
     function incrementBetOne(){
