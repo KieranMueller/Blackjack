@@ -1,5 +1,6 @@
 html{
     margin: 0;
+    touch-action: manipulation;
     overflow-x: hidden;
     background-color: rgb(41, 41, 41);
 }
