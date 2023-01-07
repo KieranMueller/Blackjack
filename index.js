@@ -1,3 +1,7 @@
+window.addEventListener("load", function(){this.setTimeout(function(){
+    window.scrollTo(0,1);}, 0);});
+
+
 function randomNumber(){
     let randomNumber = Math.floor((Math.random()*13)+1)
     if (randomNumber === 1) return 11;
