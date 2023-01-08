@@ -7,6 +7,7 @@ function randomNumber(){
 // Variables
 let cards = [];
 let youWin = false;
+let isInGame = false;
 let hasBet = false;
 let sum = 0;
 let hasBlackjack = false;
@@ -14,11 +15,11 @@ let isAlive = false;
 let message = " ";
 let dealerCards = [];
 let newDealerCard = 0;
-let newDealerCardTwo = 9;
 let betTotal = [];
+let betSum = 0;
 let dealerSum = 0;
 let playerName = "Jasper";
-let playerChips = 600;
+let playerChips = [];
 let displayMessage = document.getElementById("message");
 let sumMessage = document.getElementById("sum");
 let displayCards = document.querySelector(".cards");
@@ -42,6 +43,7 @@ function stand(){
         setTimeout(function(){dealerEl.textContent = dealerCards[1] + " " + dealerCards[0]},800);
         if(dealerSum>sum) setTimeout(function(){displayMessage.textContent = "You Lose"},800);
         if(dealerSum<sum) setTimeout(function(){displayMessage.textContent = "You Win"},800);
+        youWin = true;
         if(dealerSum === sum) setTimeout(function(){displayMessage.textContent = "Push"},800);
         return;
     }
@@ -76,6 +78,7 @@ function stand(){
     if(dealerSum > 21){
         isAlive = false;
         setTimeout(function(){displayMessage.textContent = "Dealer Bust: You Win!"},800);
+        youWin = true;
         return;
     }
     if(dealerSum === 21){
@@ -87,23 +90,25 @@ function stand(){
         isAlive = false;
         if(dealerSum>sum) setTimeout(function(){displayMessage.textContent = "You Lose"},800);
         if(dealerSum<sum) setTimeout(function(){displayMessage.textContent = "You Win"},800);
+        youWin = true;
         if(dealerSum === sum) setTimeout(function(){displayMessage.textContent = "Push"},800);
         return;}
     }
 }
 
-
 // Betting!
     function incrementBetOne(){
     hasBet = true;
     if(!isAlive){
-    let betAmount = 1;
-    let betSum = 0;
-    betTotal.push(betAmount);
-    for (let i = 0; i < betTotal.length; i++){
-        betSum += betTotal[i]
+        let betAmount = 1;
+       let betSum = 0;
+        betTotal.push(betAmount);
+        for (let i = 0; i < betTotal.length; i++){
+            betSum += betTotal[i];
+            playerEl.textContent = playerName + ": $" + (playerChips - betSum);
     }
     betEl.textContent = "Bet: $"+betSum;
+
 }
 }
 function incrementBetFive(){
@@ -116,6 +121,8 @@ function incrementBetFive(){
         betSum += betTotal[i]
     }
     betEl.textContent = "Bet: $"+betSum;
+    playerEl.textContent = playerName + ": $" + (playerChips - betSum);
+
 }
 }
 function incrementBetTen(){
@@ -128,17 +135,23 @@ function incrementBetTen(){
         betSum += betTotal[i]
     }
     betEl.textContent = "Bet: $"+betSum;
+    playerEl.textContent = playerName + ": $" + (playerChips - betSum);
 }
 }
 
+
+
+
 //General Parameters
+playerChips = [600];
 playerEl.textContent = playerName + ": $" + playerChips;
 function start(){
     if(!hasBet){ 
-        displayMessage.textContent = "No freebies - Please place bet";
+        displayMessage.textContent = "Please place bet";
         return;}
-    document.querySelector(".playButton").onclick = null;
-    isAlive = true;
+        isAlive = true;
+        isInGame = true;
+       // if (isInGame){document.querySelector(".goButton").onclick = null};
     let firstCard = randomNumber();
     let secondCard = randomNumber();
     cards = [firstCard, secondCard];
@@ -152,7 +165,6 @@ function start(){
     dealerCards = [dealerFirstCard, dealerSecondCard];
     dealerEl.textContent = "? "+dealerCards[0];
     dealerSum = dealerCards[0] + dealerCards [1];
-    console.log(dealerSum);
    
     if (dealerSum === 21 && sum === 21){
         dealerEl.textContent = dealerCards[1] + " " + dealerCards[0];
@@ -207,7 +219,6 @@ function renderGame(){
     };
 }
 
-console.log(dealerSum);
 
 
 let hit = function hit(){
@@ -220,21 +231,32 @@ let hit = function hit(){
    setTimeout(function(){displayCards.textContent +=  newCard + " "},500)
     }
 }
+
+
+
 function reset(){
-    if(!isAlive) document.location.reload();
+    if(!isAlive);
+    isInGame = false;
+    sum = 0;
+    displayCards.textContent = "Cards: ";
+    sumMessage.textContent = "Sum: ";
+    betEl.textContent = "Bet: ";
+    hasBet = false;
+
+    start();
+    
     
 }
 
+
 /* To-Do
 Fixes
-- i can hit play blackjack button multiple times
 
+make reset button continuous 
+text highlight color = none
 1. let Ace = 1 or 11
 2. make actual cards
-3. create a dealer/bank
 4. create chips/gambling system(add bet button etc. split, raise, double down)
-5. give functionality to stand button
-6. add age verification
 7. add funny stuff (add tik-tok explosion video to screen when blackjack (override muted autoplay?))
 
 
