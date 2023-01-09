@@ -53,13 +53,18 @@ h2{
     height:30px;
     font-size: 16px;
     background-color:bisque;
-    opacity: .8;
     border:none;
+    opacity: .7;
     transition: .3s;
     margin: 10px;
 }
 .button:hover{
     opacity: 1;
+}
+@media screen and (max-width:600px){
+    .button:hover{
+        opacity:.7;
+    }
 }
 .buttondiv{
     display: flex;
