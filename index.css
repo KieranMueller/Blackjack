@@ -4,10 +4,19 @@ html{
     overflow-x: hidden;
     background-color: rgb(41, 41, 41);
 }
+body:hover{
+    cursor:default;
+}
+::selection{
+    background: rgba(255, 255, 255, 0.142);
+}
 body{
     margin:0;
     color:rgb(245, 222, 179);
     text-align: center;
+}
+#sum, .cards{
+    padding-left: 10px;
 }
 .background-pic{
     position: fixed;
@@ -28,9 +37,6 @@ body{
     font-family: 'Times New Roman', Times, serif;
     transition: .8s;
     animation: playBlackjack 10s linear infinite;
-}
-.playButton:hover{
-    color: rgb(255, 255, 255);
 }
 @keyframes playBlackjack{
     95%{transform: rotate(0);}
