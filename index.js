@@ -17,6 +17,7 @@ let dealerCards = [];
 let newDealerCard = 0;
 let betTotal = [];
 let betSum = 0;
+let betAmount = [];
 let dealerSum = 0;
 let playerName = "Jasper";
 let playerChips = [];
@@ -24,6 +25,7 @@ let displayMessage = document.getElementById("message");
 let sumMessage = document.getElementById("sum");
 let displayCards = document.querySelector(".cards");
 let dealerEl = document.querySelector(".dealerCards");
+dealerEl.textContent = "- -";
 let betEl = document.querySelector(".bet");
 let actionButtonOne = document.querySelector(".actionButtonOne");
 let actionButtonTwo = document.querySelector(".actionButtonTwo");
@@ -32,6 +34,7 @@ let playerEl = document.querySelector(".playerObject");
 function start(){
     renderGame()
 }
+// Stand Button
 function stand(){
     if (isAlive){
         dealerEl.textContent = "Dealer Drawing..."
@@ -95,52 +98,19 @@ function stand(){
         return;}
     }
 }
-
-// Betting!
-    function incrementBetOne(){
-    hasBet = true;
+// Betting ----------------------------
+    betEl.textContent = "Bet: ";
+function incrementBet(betAmount){
     if(!isAlive){
-        let betAmount = 1;
-       let betSum = 0;
-        betTotal.push(betAmount);
-        for (let i = 0; i < betTotal.length; i++){
-            betSum += betTotal[i];
-            playerEl.textContent = playerName + ": $" + (playerChips - betSum);
-    }
-    betEl.textContent = "Bet: $"+betSum;
-
-}
-}
-function incrementBetFive(){
-    hasBet = true;
-    if(!isAlive){
-   let betAmount = 5;
-    let betSum = 0;
+    (hasBet = true);
     betTotal.push(betAmount);
-    for (let i = 0; i < betTotal.length; i++){
-        betSum += betTotal[i]
+    betSum = 0;
+    for(let i = 0; i <betTotal.length; i++)
+    betSum += betTotal[i];
+   betEl.textContent = "Bet: $" + betSum;
+   playerEl.textContent = playerName + ": $" + (playerChips-betSum);
     }
-    betEl.textContent = "Bet: $"+betSum;
-    playerEl.textContent = playerName + ": $" + (playerChips - betSum);
-
 }
-}
-function incrementBetTen(){
-    hasBet = true;
-    if(!isAlive){
-   let betAmount = 10;
-    let betSum = 0;
-    betTotal.push(betAmount);
-    for (let i = 0; i < betTotal.length; i++){
-        betSum += betTotal[i]
-    }
-    betEl.textContent = "Bet: $"+betSum;
-    playerEl.textContent = playerName + ": $" + (playerChips - betSum);
-}
-}
-
-
-
 
 //General Parameters
 playerChips = [600];
