@@ -208,6 +208,7 @@ function reset(){
     if(!isAlive);
     isInGame = false;
     sum = 0;
+    dealerEl.textContent = "- -";
     displayCards.textContent = "Cards: ";
     sumMessage.textContent = "Sum: ";
     betEl.textContent = "Bet: ";
